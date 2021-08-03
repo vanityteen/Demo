@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="stylesheet" href="./src/css/flex.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <i></i>
+        <span>极客大叔的爱好</span>
+      </div>
+      <ul>
+        <li><a href="#">喜欢的电影</a></li>
+        <li><a href="#">喜欢的书</a></li>
+        <li><a href="#">聊一聊</a></li>
+      </ul>
+      <button type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <ol class="hidden" style="width:100%;float: left;">
+        <li><a href="#">喜欢的电影</a></li>
+        <li><a href="#">喜欢的书</a></li>
+        <li><a href="#">聊一聊</a></li>
+      </ol>
+    </div>
+  </header>
+  <div class="content">
+    <article>
+      <div class="container">
+        <div class="movie">
+          <div class="title">
+            <span>喜欢的电影</span>
+          </div>
+          <ul>
+            <li>
+              <p style="background: url(./src/img/hml.jpg) no-repeat center center; background-size: cover;"></p>
+              <span>花木兰</span>
+            </li>
+            <li>
+              <p style="background: url(./src/img/babai.jpg) no-repeat center center; background-size: cover;"></p>
+              <span>八佰</span>
+            </li>
+            <li>
+              <p style="background: url(./src/img/bjz.jpg) no-repeat center center; background-size: cover;"></p>
+              <span>绑架者</span>
+            </li>
+            <li>
+              <p style="background: url(./src/img/hg.jpg) no-repeat center center; background-size: cover;"></p>
+              <span>火锅</span>
+            </li>
+          </ul>
+        </div>
+        <div class="book">
+          <div class="title">
+            <span>喜欢的书籍</span>
+          </div>
+          <ul>
+            <li>
+              <img src="./src/img/fwl.jpg">
+              <span>百年佳人</span>
+            </li>
+            <li>
+              <img src="./src/img/hb.jpg">
+              <span>黄渤</span>
+            </li>
+            <li>
+              <img src="./src/img/lcw.jpg">
+              <span>梁朝伟</span>
+            </li>
+            <li>
+              <img src="./src/img/jqr.jpg">
+              <span>机器人</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="msg">
+        <div class="txt">
+          王小波说他是一直特立独行的猪，那我就当一只特立独行的鸟吧。交个朋友吗，扫描右侧二维码。
+        </div>
+        <div class="code">
+          <img src="./src/img/code.png" alt="二维码">
+        </div>
+        <div class="person">
+          版权所有&copy;极客大叔
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+  var btn = document.querySelector('button')
+  var ol = document.querySelector('ol')
+  btn.addEventListener('click', () => {
+    ol.classList.toggle('hidden')
+  })
+</script>
+
+</html>

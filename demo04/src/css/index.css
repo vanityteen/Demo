@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.box,.message{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* container */
+.container{
+    position: relative;
+    width: 1140px;
+    height: 600px;
+    border: 1px solid #ccc;
+    margin-top: 25px;
+    color: rgb(151, 71, 173);
+    overflow: hidden;
+}
+
+/* message */
+.message {
+    margin-top: 25px;
+}
+.message p {
+    display: flex;
+    width: 260px;
+    height: 100%;
+    justify-content: space-evenly;
+}
+.message p input {
+    display: block;
+    width: 220px;
+    height: 30px;
+    font-size: 24px;
+}
+.message p button{
+    display: block;
+    float: left;
+    width: 70px;
+    height: 30px;
+    margin-top: 25px;
+}

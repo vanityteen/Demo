@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新动态</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/newsPage.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/header.css">
+</head>
+<body>
+    <div class="header-box">
+        <div class="logo">
+            <i></i>
+            <span>复仇者联盟</span>
+        </div>
+        <ul class="header-ul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </div>
+</body>
+</html>
+    </header>
+    <div class="context">
+        <div class="title">
+            最新动态
+        </div>
+        <div class="news-box">
+            <ul id="news-ul"></ul>
+        </div>
+        <div class="page-btn">
+
+        </div>
+    </div>
+    <footer>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>footer</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/footer.css">
+</head>
+<body>
+    <div class="footer-box">
+        <ul class="foot_nav">
+            <li>
+                <img src="./img/map.png" alt="map">
+                <span>福州市仓山区万达广场B区</span>
+            </li>
+            <li>
+                <img src="./img/email.png" alt="email">
+                <span>admin@example.com</span>
+            </li>
+            <li>
+                <img src="./img/service.png" alt="service">
+                <span>400-123-4567</span>
+            </li>
+            <li class="code">
+                <img src="./img/code.png" alt="code">
+                <span>扫一扫加入复仇者联盟</span>
+            </li>
+        </ul>
+        <div class="msg">
+            <span>
+                版权所有&copy;复仇者联盟
+            </span>
+        </div>
+    </div>
+</body>
+</html>
+    </footer>
+</body>
+<script>
+    // new newsPage();
+    const ul = document.getElementById('news-ul')
+    var str = 
+    `
+        <li>
+            <i>
+                <img src="./img/artimg.png">
+            </i>
+            <p>
+                <span class="art-tit">复仇者联盟1</span>
+                <span class="art-time">发布日期：2019-10-10</span>
+                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
+            </p>
+        </li>
+        <li>
+            <i>
+                <img src="./img/artimg.png">
+            </i>
+            <p>
+                <span class="art-tit">复仇者联盟1</span>
+                <span class="art-time">发布日期：2019-10-10</span>
+                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
+            </p>
+        </li>
+    `
+    axios({
+        url:'https://api.apiopen.top/getWangYiNews',
+        method:'POST',
+    })
+    .then(({data})=>{
+        var movieList = data.result
+        console.log(movieList);
+        movieList.map(it=>{
+            str +=
+            `
+                <li>
+                    <i>
+                        <img src="${it.image}">
+                    </i>
+                    <p>
+                        <span class="art-tit">${it.title}</span>
+                        <span class="art-time">发布日期：${it.passtime.slice(0,10)}</span>
+                        <span class="art-descr">${it.title}</span>
+                    </p>
+                </li>
+            `
+            ul.innerHTML = str
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,45 @@
+/* footer */
+.footer-box{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+.foot_nav{
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 16px;
+}
+.foot_nav li{
+    width: 168px;
+    height: 200px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.foot_nav li img{
+    display: block;
+    width: 126px;
+    height: 126px;
+}
+.foot_nav .code{
+    width: 214px;
+    height: 250px;
+}
+.foot_nav .code img{
+    width: 200px;
+    height: 200px;
+}
+.msg{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.msg span{
+    text-align: center;
+    border-top: 1px solid #2c2c2c;
+    padding-top: 15px;
+}
