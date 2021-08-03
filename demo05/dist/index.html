@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <div class="box">
+        <!-- <div class="box">
             <div class="logo">
                 <i></i>
                 <span>复仇者联盟</span>
@@ -24,17 +24,58 @@
                 <li><a href="#">新闻</a></li>
                 <li><a href="#">关于我们</a></li>
             </ul>
+        </div> -->
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/header.css">
+</head>
+<body>
+    <div class="header-box">
+        <div class="logo">
+            <i></i>
+            <span>复仇者联盟</span>
         </div>
-        
+        <ul class="header-ul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var ul = document.querySelector('.header-ul'),
+        alinkHome = ul.querySelectorAll('a')[0],
+        alinkNews = ul.querySelectorAll('a')[1],
+        alinkUs = ul.querySelectorAll('a')[2]
+    alinkHome.addEventListener('click',()=>{
+        location.href = 'index.html'
+    })
+    alinkNews.addEventListener('click',()=>{
+        location.href = 'newsPage.html'
+    })
+    alinkUs.addEventListener('click',()=>{
+        location.href = 'aboutUs.html'
+    })
+</script>
+</html>
     </header>
     <div class="context">
         <!-- 轮播图 -->
         <div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background: url(./img/b1.png) no-repeat center center; background-size: cover;"></div>
-                    <div class="swiper-slide" style="background: url(./img/b2.png) no-repeat center center; background-size: cover;"></div>
-                    <div class="swiper-slide" style="background: url(./img/b3.png) no-repeat center center; background-size: cover;"></div>
+                    <div class="swiper-slide"
+                        style="background: url(./img/b1.png) no-repeat center center; background-size: cover;"></div>
+                    <div class="swiper-slide"
+                        style="background: url(./img/b2.png) no-repeat center center; background-size: cover;"></div>
+                    <div class="swiper-slide"
+                        style="background: url(./img/b3.png) no-repeat center center; background-size: cover;"></div>
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
@@ -67,20 +108,19 @@
                     <div class="hero-intr">
                         <h2>托尼·史塔克</h2>
                         <div class="txt">
-                            <p>天才、亿万富翁、花花公子、慈善家、军火商、爱国者，漫威电影宇宙绝对的男一号..钢铁侠托尼，斯塔克在中东推销军火时被炸伤并绑架，弹片残留在心脏附近的血管里，为了避免弹片流入心脏，一同被囚禁的科学家殷森在他的胸口制作了一套电磁铁保住了他的性命，随后托尼在山洞里用导弹零件打造了马克型钢铁战衣杀出重围。回到纽约的托尼获得了重生，在胸口的电磁铁的基础上制造了新反应堆和钢铁战衣，在消灭了公司的叛徒后，他向世人宣布“我就是钢铁侠!”</p>
+                            <p>天才、亿万富翁、花花公子、慈善家、军火商、爱国者，漫威电影宇宙绝对的男一号..钢铁侠托尼，斯塔克在中东推销军火时被炸伤并绑架，弹片残留在心脏附近的血管里，为了避免弹片流入心脏，一同被囚禁的科学家殷森在他的胸口制作了一套电磁铁保住了他的性命，随后托尼在山洞里用导弹零件打造了马克型钢铁战衣杀出重围。回到纽约的托尼获得了重生，在胸口的电磁铁的基础上制造了新反应堆和钢铁战衣，在消灭了公司的叛徒后，他向世人宣布“我就是钢铁侠!”
+                            </p>
                             <p>
                                 <i></i>
                                 <span>
-                                    能 &nbsp;&nbsp; 力：钢铁侠不断的创造出新的科技并不停的改良现有的科技。这样的特质延续至当他遇见强敌与危机时，让他可以以不寻常但有效的运用他的装甲。他在商界也极受尊崇，在谈及有关经济的议题时能够吸引人们的完全的注意力。他对属下极为忠实，但同时也要求属下对他有同等的忠实度，而且拥有最高标准的企业伦理。
+                                    能 &nbsp;&nbsp;
+                                    力：钢铁侠不断的创造出新的科技并不停的改良现有的科技。这样的特质延续至当他遇见强敌与危机时，让他可以以不寻常但有效的运用他的装甲。他在商界也极受尊崇，在谈及有关经济的议题时能够吸引人们的完全的注意力。他对属下极为忠实，但同时也要求属下对他有同等的忠实度，而且拥有最高标准的企业伦理。
                                 </span>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="box2">
-                    <div class="hero-photo">
-                        <!-- <img src="./src/img/captain.png" alt="captain"> -->
-                    </div>
                     <div class="hero-intr">
                         <h2>美国队长</h2>
                         <div class="txt">
@@ -90,10 +130,14 @@
                             <p>
                                 <i></i>
                                 <span>
-                                    能 &nbsp;&nbsp; 力：具有常人远所不及的力量、敏捷、敏锐度、体格，并且强化了他的新陈代谢机能、能够将肌肉中的乳酸等有造成疲劳的物质完全代谢掉，延缓了他的衰老。全面掌握了世界上所有的格斗技巧。
+                                    能 &nbsp;&nbsp;
+                                    力：具有常人远所不及的力量、敏捷、敏锐度、体格，并且强化了他的新陈代谢机能、能够将肌肉中的乳酸等有造成疲劳的物质完全代谢掉，延缓了他的衰老。全面掌握了世界上所有的格斗技巧。
                                 </span>
                             </p>
                         </div>
+                    </div>
+                    <div class="hero-photo">
+                        <!-- <img src="./src/img/captain.png" alt="captain"> -->
                     </div>
                 </div>
                 <div class="box3">
@@ -109,7 +153,8 @@
                             <p>
                                 <i></i>
                                 <span>
-                                    能 &nbsp;&nbsp; 力：黑寡妇出现在2013年的秘密复仇者系列尼克斯宾塞和卢克罗斯。第一个也是最著名的黑寡妇是一名俄罗斯特工，她接受过间谍、武术家和狙击手的训练，并装备了一系列高科技武器，其中包括两件装在腕上的能量武器，被称为“寡妇咬伤”。
+                                    能 &nbsp;&nbsp;
+                                    力：黑寡妇出现在2013年的秘密复仇者系列尼克斯宾塞和卢克罗斯。第一个也是最著名的黑寡妇是一名俄罗斯特工，她接受过间谍、武术家和狙击手的训练，并装备了一系列高科技武器，其中包括两件装在腕上的能量武器，被称为“寡妇咬伤”。
                                 </span>
                             </p>
                         </div>
@@ -229,7 +274,9 @@
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         loop: true, // 循环模式选项
-
+        autoplay: {
+            delay: 3000,
+        }, //自动轮播
         // 如果需要分页器
         pagination: {
             el: '.swiper-pagination',
@@ -243,9 +290,5 @@
         },
 
     })
-</script>
-<script src="./js/index.js"></script>
-<script>
-    new Index()
 </script>
 </html>

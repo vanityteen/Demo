@@ -7,7 +7,7 @@
     line-height: 50px;
 }
 .news-box{
-    width: 1200px;
+    width: 85%;
     margin: 0 auto;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -23,7 +23,7 @@
     align-items: center;
     gap: 8px;
     width: 550px;
-    height: 300px;
+    /* height: 300px; */
 }
 .news-box ul li i,img{
     width: 240px;
@@ -48,5 +48,12 @@
 .news-box ul li p .art-descr{
     color: #2c2c2c;
     font-size: 12px;
+}
+
+@media screen and (max-width: 992px) {
+    .news-box ul li{
+        flex-direction: column;
+        width: 240px;
+    }
 }
 

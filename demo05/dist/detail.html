@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最新动态</title>
+    <title>详情页</title>
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/newsPage.css">
-    <link rel="stylesheet" href="css/page.css">
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <link rel="stylesheet" href="css/detail.css">
 </head>
 <body>
     <header>
@@ -53,13 +51,24 @@
 </html>
     </header>
     <div class="context">
-        <div class="title">
-            最新动态
+        <div class="info">
+            <p class="title">
+                复仇者联盟1
+            </p>
+            <span class="time">
+                2019-10-10 10:04:17
+            </span>
         </div>
-        <div class="news-box">
-            <ul id="news-ul"></ul>
+        <div class="content">
+            <div class="img-post">
+                <img src="./img/artimg.png" alt="">
+            </div>
+            <div class="intr">
+                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
+                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
+                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
+            </div>
         </div>
-
     </div>
     <footer>
         <!DOCTYPE html>
@@ -102,54 +111,4 @@
 </html>
     </footer>
 </body>
-<script>
-    const ul = document.getElementById('news-ul')
-    var str = 
-    `
-        <li>
-            <i>
-                <img src="./img/artimg.png">
-            </i>
-            <p>
-                <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
-                <span class="art-time">发布日期：2019-10-10</span>
-                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
-            </p>
-        </li>
-        <li>
-            <i>
-                <img src="./img/artimg.png">
-            </i>
-            <p>
-                <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
-                <span class="art-time">发布日期：2019-10-10</span>
-                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
-            </p>
-        </li>
-    `
-    axios({
-        url:'https://api.apiopen.top/getWangYiNews',
-        method:'POST',
-    })
-    .then(({data})=>{
-        var movieList = data.result
-        console.log(movieList);
-        movieList.map(it=>{
-            str +=
-            `
-                <li>
-                    <i>
-                        <img src="${it.image}">
-                    </i>
-                    <p>
-                        <span class="art-tit"><a href='#'>${it.title}</a></span>
-                        <span class="art-time">发布日期：${it.passtime.slice(0,10)}</span>
-                        <span class="art-descr">${it.title}</span>
-                    </p>
-                </li>
-            `
-            ul.innerHTML = str
-        })
-    })
-</script>
 </html>

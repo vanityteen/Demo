@@ -21,4 +21,19 @@
         </ul>
     </div>
 </body>
+<script>
+    var ul = document.querySelector('.header-ul'),
+        alinkHome = ul.querySelectorAll('a')[0],
+        alinkNews = ul.querySelectorAll('a')[1],
+        alinkUs = ul.querySelectorAll('a')[2]
+    alinkHome.addEventListener('click',()=>{
+        location.href = 'index.html'
+    })
+    alinkNews.addEventListener('click',()=>{
+        location.href = 'newsPage.html'
+    })
+    alinkUs.addEventListener('click',()=>{
+        location.href = 'aboutUs.html'
+    })
+</script>
 </html>

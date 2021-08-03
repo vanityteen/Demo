@@ -1,0 +1,1 @@
+.content,.info{width:1200px;margin:0 auto;display:flex;flex-direction:column}.info .title{color:#000;font-size:24px;font-weight:700;padding-left:36px;border-left:3px solid #cd1439}.info .time{color:#a1a1a1;padding-left:36px;margin-top:12px}.content{width:50%;margin:24px auto;row-gap:25px}.content .img-post img{width:100%}

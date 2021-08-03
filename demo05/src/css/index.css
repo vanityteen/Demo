@@ -68,21 +68,23 @@ header ul li{
 .service_range .content{
     display: flex;
     justify-content: center;
-    width: 1200px;
-    height: 300px;
+    width: 75%;
+    /* height: 300px; */
+    height: auto;
     background-color: #ddd;
     margin: 0 auto;
     margin-top: 25px;
 }
 .service_range .content ul{
     display: flex;
+    /* flex-direction: column; */
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
 }
 .service_range .content ul li{
-    width: 150px;
-    height: 200px;
+    width: 200px;
+    /* height: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -124,48 +126,49 @@ header ul li{
     border: 1px solid slategray; 
     transform: translate(-50%);
 }
-.intr .box1{
-    width: 1200px;
-    height: 600px;
+.intr .box1,.box2,.box3{
+    width: 100%;
+    /* height: 600px; */
+    display: flex;
     margin: 0 auto;
+    justify-content: center;
 }
 .intr .box1 .hero-photo{
-    float: left;
     background: url(../img/ironman.png) no-repeat;
     background-position-x: -165px;
     background-position-y: -5px;
+    /* flex: 1; */
 }
 .intr .box1 .hero-intr{
-    float: right;
+    /* float: right; */
+    /* flex: 1; */
 }
-.intr .box2{
+/* .intr .box2{
     width: 1200px;
     height: 600px;
     margin: 0 auto;
-}
+} */
 .intr .box2 .hero-photo{
-    float: right;
     background: url(../img/captain.png) no-repeat;
     background-position-x: -294px;
     background-position-y: -5px;
 }
-.intr .box2 .hero-intr{
+/* .intr .box2 .hero-intr{
     float: left;
-}
-.intr .box3{
+} */
+/* .intr .box3{
     width: 1200px;
     height: 600px;
     margin: 0 auto;
-}
+} */
 .intr .box3 .hero-photo{
-    float: left;
     background: url(../img/natasha.png) no-repeat;
     background-position-x: -294px;
     background-position-y: -5px;
 }
-.intr .box3 .hero-intr{
+/* .intr .box3 .hero-intr{
     float: right;
-}
+} */
 /* news */
 .news{
     width: 100%;
@@ -176,12 +179,13 @@ header ul li{
     font-weight: 700;
 }
 .news ul{
-    width: 1200px;
-    height: 400px; 
+    width: 85%;
+    /* height: 400px;  */
     margin: 0 auto;
     margin-top: 25px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 24px;
 }
 .news ul li{
     display: flex;
@@ -255,3 +259,40 @@ footer .msg span{
     padding-top: 15px;
 }
 
+/* 超小屏幕（手机） */
+@media screen and (max-width:768px){
+
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media screen and (min-width: 768px) {
+
+}
+
+/* 中等屏幕（桌面显示器，小于等于 992px） */
+@media screen and (max-width: 992px) {
+    .context .swiper-container{
+        display: none;
+    }
+    .service_range .content ul{
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .intr .box1,.box3{
+        flex-direction: column;
+        align-items: center;
+    }
+    .intr .box2{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .news ul{
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (min-width: 1200px) {
+    /* 正常显示 */
+}
