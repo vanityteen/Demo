@@ -8,7 +8,8 @@
     float: left;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 96px;
     margin-top: 16px;
 }
 .foot_nav li{
@@ -42,4 +43,14 @@
     text-align: center;
     border-top: 1px solid #2c2c2c;
     padding-top: 15px;
+}
+/* 中等屏幕（桌面显示器，小于等于 992px） */
+@media screen and (max-width: 992px){
+    .footer-box{
+        width: 100%;
+    }
+    .foot_nav{
+        justify-content: space-evenly;
+        column-gap: 24px;
+    }
 }

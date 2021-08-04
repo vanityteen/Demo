@@ -69,6 +69,7 @@ header ul li{
     display: flex;
     justify-content: center;
     width: 75%;
+    min-width: 600px;
     /* height: 300px; */
     height: auto;
     background-color: #ddd;
@@ -134,7 +135,7 @@ header ul li{
     justify-content: center;
 }
 .intr .box1 .hero-photo{
-    background: url(../img/ironman.png) no-repeat;
+    background-image: url(../img/ironman.png);
     background-position-x: -165px;
     background-position-y: -5px;
     /* flex: 1; */
@@ -149,7 +150,7 @@ header ul li{
     margin: 0 auto;
 } */
 .intr .box2 .hero-photo{
-    background: url(../img/captain.png) no-repeat;
+    background-image: url(../img/captain.png);
     background-position-x: -294px;
     background-position-y: -5px;
 }
@@ -162,7 +163,7 @@ header ul li{
     margin: 0 auto;
 } */
 .intr .box3 .hero-photo{
-    background: url(../img/natasha.png) no-repeat;
+    background-image: url(../img/natasha.png);
     background-position-x: -294px;
     background-position-y: -5px;
 }
@@ -275,7 +276,9 @@ footer .msg span{
     }
     .service_range .content ul{
         flex-wrap: wrap;
-        flex-direction: column;
+    }
+    .service_range .content ul li{
+        width: 25%;
     }
     .intr .box1,.box3{
         flex-direction: column;

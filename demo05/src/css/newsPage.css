@@ -5,6 +5,7 @@
     font-weight: 700;
     font-size: 30px;
     line-height: 50px;
+    visibility: visible;
 }
 .news-box{
     width: 85%;
@@ -12,13 +13,13 @@
     margin-top: 24px;
     margin-bottom: 24px;
 }
-.news-box ul{
+.news-box #list{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 24px;
 }
-.news-box ul li{
+.news-box #list li div{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -50,9 +51,11 @@
     font-size: 12px;
 }
 
-@media screen and (max-width: 992px) {
-    .news-box ul li{
+@media screen and (max-width: 768px) {
+    .news-box #list li div {
         flex-direction: column;
+    }
+    .news-box #list li div p{
         width: 240px;
     }
 }

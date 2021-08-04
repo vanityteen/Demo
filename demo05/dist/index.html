@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
 </head>
 
@@ -274,11 +275,10 @@
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         loop: true, // 循环模式选项
-        autoplay: {
+        autoplay: {//自动轮播
             delay: 3000,
-        }, //自动轮播
-        // 如果需要分页器
-        pagination: {
+        }, 
+        pagination: { // 如果需要分页器
             el: '.swiper-pagination',
             clickable: true,
         },

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,38 @@
     <title>最新动态</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/newsPage.css">
-    <link rel="stylesheet" href="css/page.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <style>
+        #pager {
+            margin: 50px auto;
+            text-align: center;
+            line-height: 26px;
+        }
+
+        #pager>li {
+            display: inline-block;
+            min-width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin: 5px;
+            cursor: pointer;
+            color: #999;
+            background-color: #fff;
+            border: 1px solid #f6f6f6;
+        }
+
+        #pager>span {
+            color: #999;
+            margin-left: 5px;
+        }
+
+        .j-curr {
+            color: #fff !important;
+            background-color: #16ab95 !important;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <!DOCTYPE html>
@@ -57,9 +87,22 @@
             最新动态
         </div>
         <div class="news-box">
-            <ul id="news-ul"></ul>
+            <ul id="list">
+                <li>
+                    <div>
+                        <i>
+                            <img src="./img/artimg.png">
+                        </i>
+                        <p>
+                            <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
+                            <span class="art-time">发布日期：2019-10-10</span>
+                            <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
         </div>
-
+        <div id="pager"></div>
     </div>
     <footer>
         <!DOCTYPE html>
@@ -103,53 +146,196 @@
     </footer>
 </body>
 <script>
-    const ul = document.getElementById('news-ul')
-    var str = 
-    `
-        <li>
-            <i>
-                <img src="./img/artimg.png">
-            </i>
-            <p>
-                <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
-                <span class="art-time">发布日期：2019-10-10</span>
-                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
-            </p>
-        </li>
-        <li>
-            <i>
-                <img src="./img/artimg.png">
-            </i>
-            <p>
-                <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
-                <span class="art-time">发布日期：2019-10-10</span>
-                <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
-            </p>
-        </li>
-    `
+    var datalist = document.getElementById('list')
+    console.log(datalist);
+    var str
     axios({
-        url:'https://api.apiopen.top/getWangYiNews',
-        method:'POST',
+        url: 'https://api.apiopen.top/getWangYiNews',
+        method: 'POST',
     })
-    .then(({data})=>{
-        var movieList = data.result
-        console.log(movieList);
-        movieList.map(it=>{
-            str +=
-            `
-                <li>
-                    <i>
-                        <img src="${it.image}">
-                    </i>
-                    <p>
-                        <span class="art-tit"><a href='#'>${it.title}</a></span>
-                        <span class="art-time">发布日期：${it.passtime.slice(0,10)}</span>
-                        <span class="art-descr">${it.title}</span>
-                    </p>
-                </li>
-            `
-            ul.innerHTML = str
+        .then(({ data }) => {
+            var pager = function () {
+                //公共函数
+                function T$(id) {
+                    return document.getElementById(id);
+                }
+                function T$$(root, tag) {
+                    return (root || document).getElementsByTagName(tag);
+                }
+                function $extend(object1, object2) {
+                    for (var p in object2) {
+                        object1[p] = object2[p];
+                    }
+                    return object1;
+                }
+                function $each(arr, callback, thisp) {
+                    if (arr.forEach) {
+                        arr.forEach(callback, thisp);
+                    } else {
+                        for (var i = 0, len = arr.length; i < len; i++) {
+                            callback.call(thisp, arr[i], i, arr);
+                        }
+                    }
+                }
+
+                //默认参数配置
+                var defaultOptions = {
+                    elemShowCount: 5,     //每页显示条数，默认为5条
+                    pageShowCount: 4,     //显示的页码数目，默认显示4个页码
+                    showFirstPageBtnAndLastPageBtn: true,     //是否显示首页，尾页，默认显示
+                    showPrevBtnAndNextBtn: true,    //是否显示上一页，下一页，默认显示
+                    showPageNumTips: true,      //是否显示【1/7页】页面提示，默认显示
+                    showPageNum: true      //是否显示分页的数字，默认显示
+                };
+
+                //主类构造函数 参数说明：bid为元素容器div的ID,pid为分页容器div的ID,options为重写的默认配置参数
+                var showPage = function (bid, pid, options) {
+                    var self = this;
+                    if (!(self instanceof showPage)) {
+                        return new showPage(bid, pid, options);
+                    }
+                    self.container = T$(bid);    //元素容器div
+                    self.pagerBox = T$(pid);    //翻页容器div
+                    if (!self.container) {
+                        return;
+                    }
+                    self.options = $extend(defaultOptions, options || {});
+                    self.elem = T$$(self.container, 'li');     //需要分页的元素
+                    self.elemTotalCount = self.elem.length || 0;    //分页元素的总个数
+                    self.pageTotalCount = Math.ceil(self.elemTotalCount / self.options.elemShowCount) || 0;   //总页数
+                };
+
+                showPage.prototype = {
+                    constructor: showPage,
+                    //显示当页的元素内容，参数currPageNum为当前页码，从0开始
+                    showChangeElemCont: function (currPageNum) {
+                        var self = this;     //this为showPage对象
+                        var nextPageCount = (currPageNum + 1) * self.options.elemShowCount < self.elemTotalCount ? (currPageNum + 1) * self.options.elemShowCount : self.elemTotalCount;     //判断为最后一页时，最后一页应该显示的数据条数
+                        for (var i = 0; i < self.elemTotalCount; i++) {
+                            self.elem[i].style.display = 'none';
+                        }
+                        for (var i = currPageNum * self.options.elemShowCount, l = nextPageCount; i < l; i++) {
+                            self.elem[i].style.display = 'block';
+                        }
+                    },
+                    //显示当页的页码内容，参数currPageNum为当前页码，从0开始
+                    showChangePageCont: function (currPageNum) {
+                        var self = this;      //this为showPage对象
+                        var firstPageHtml = prevPageHtml = pageLinkHtml = nextPageHtml = lastPageHtml = pageTips = '';     //firstPageHtml:首页   prevPageHtml:上一页  pageLinkHtml:页码表   nextPageHtml:下一页  lastPageHtml:尾页   pageTips:页码提示
+                        var startPage, endPage;        //startPage:页码列表中的第一页   endPage:页码列表中的最后一页
+                        var pageShowMidCount = Math.ceil(self.options.pageShowCount / 2);      //页码中间值，当超过这个值时，页码列表发生变化
+                        if (self.pageTotalCount <= self.options.pageShowCount) {           //总页码数小于等于默认要显示的页码数时，直接在当前页面显示全部的页码
+                            startPage = 0;
+                            endPage = self.pageTotalCount - 1;
+                        } else {
+                            if (self.options.pageShowCount % 2 == 0) {
+                                if ((currPageNum + 1 - pageShowMidCount) <= 0) {       //首页
+                                    startPage = 0;
+                                    endPage = self.options.pageShowCount - 1;
+                                } else if ((currPageNum + 1 + pageShowMidCount) >= self.pageTotalCount) {            //尾页
+                                    startPage = self.pageTotalCount - 1 - self.options.pageShowCount + 1;
+                                    endPage = self.pageTotalCount - 1;
+                                } else {
+                                    startPage = currPageNum - pageShowMidCount + 1;
+                                    endPage = currPageNum + pageShowMidCount;
+                                }
+                            } else {
+                                if ((currPageNum + 1 - pageShowMidCount) <= 0) {       //首页
+                                    startPage = 0;
+                                    endPage = self.options.pageShowCount - 1;
+                                } else if ((currPageNum + 1 + pageShowMidCount - 1) >= self.pageTotalCount) {            //尾页
+                                    startPage = self.pageTotalCount - 1 - self.options.pageShowCount + 1;
+                                    endPage = self.pageTotalCount - 1;
+                                } else {
+                                    startPage = currPageNum - pageShowMidCount + 1;
+                                    endPage = currPageNum + pageShowMidCount - 1;
+                                }
+                            }
+                        }
+
+                        //显示首页尾页
+                        if (self.options.showFirstPageBtnAndLastPageBtn == true) {
+                            firstPageHtml = '<li>首页</li>';
+                            lastPageHtml = '<li>尾页</li>';
+                        }
+                        //显示上一页下一页
+                        if (self.options.showPrevBtnAndNextBtn == true) {
+                            if (currPageNum != 0) prevPageHtml = '<li><</li>';       //首页不显示上一页
+                            if (currPageNum != self.pageTotalCount - 1) nextPageHtml = '<li>></li>';      //尾页不显示最后一页
+                        }
+                        //显示页码数字链接
+                        for (var i = startPage, l = endPage; i <= l; i++) {
+                            if (currPageNum == i) {
+                                pageLinkHtml += '<li class="j-curr">' + (i + 1) + '</li>';
+                            } else {
+                                pageLinkHtml += '<li>' + (i + 1) + '</li>';
+                            }
+                        }
+                        //显示页码提示信息
+                        if (self.options.showPageNumTips == true) {
+                            pageTips = '<span>' + (currPageNum + 1) + '/' + self.pageTotalCount + '</span>';
+                        }
+                        //拼出页码元素的整体内容
+                        self.pagerBox.innerHTML = firstPageHtml + prevPageHtml + pageLinkHtml + nextPageHtml + lastPageHtml + pageTips;
+
+                        var elems = T$$(self.pagerBox, 'li');
+                        $each(elems, function (o, i) {
+                            o.onclick = function () {
+                                if (o.innerText == '首页') {
+                                    self.showChangeElemCont(0);
+                                    self.showChangePageCont(0);
+                                } else if (o.innerText == '尾页') {
+                                    self.showChangeElemCont(self.pageTotalCount - 1);
+                                    self.showChangePageCont(self.pageTotalCount - 1);
+                                } else if (o.innerText == '<') {
+                                    self.showChangeElemCont(currPageNum - 1);
+                                    self.showChangePageCont(currPageNum - 1);
+                                } else if (o.innerText == '>') {
+                                    self.showChangeElemCont(currPageNum + 1);
+                                    self.showChangePageCont(currPageNum + 1);
+                                } else {
+                                    index = parseInt(o.innerText) - 1;
+                                    self.showChangeElemCont(index);
+                                    self.showChangePageCont(index);
+                                }
+                            }
+                        });
+                    }
+                };
+
+                return {
+                    onShowPage: function (bid, pid, options) {
+                        //调用主类
+                        var st = new showPage(bid, pid, options);
+                        st.showChangeElemCont(0);
+                        st.showChangePageCont(0);
+                    }
+                }
+            }();
+
+
+            var movieList = data.result
+            // console.log(movieList);
+            movieList.map(it => {
+                str =
+                    `
+                    <div>
+                        <i>
+                            <img src="${it.image}">
+                        </i>
+                        <p>
+                            <span class="art-tit"><a href='#'>${it.title}</a></span>
+                            <span class="art-time">发布日期：${it.passtime.slice(0, 10)}</span>
+                            <span class="art-descr">${it.title}</span>
+                        </p>
+                    </div>
+                    `
+                var tempNode = document.createElement('li')
+                tempNode.innerHTML = str;
+                datalist.appendChild(tempNode)
+            })
+            pager.onShowPage('list', 'pager', { elemShowCount: 4, pageShowCount: 5 });
         })
-    })
 </script>
+
 </html>
