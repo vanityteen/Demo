@@ -135,10 +135,21 @@ article .container .book ul li{
     flex-direction: column;
     justify-content: flex-end;
 }
-
+article .container .book ul li:nth-child(1){
+    height: 350px;
+}
+article .container .book ul li:nth-child(2){
+    height: 370px;
+}
+article .container .book ul li:nth-child(3){
+    height: 330px;
+}
+article .container .book ul li:nth-child(4){
+    height: 300px;
+}
 article .container .book ul li img{
-    align-items: stretch;
     flex: 1;
+    overflow: hidden;
 }
 
 /* footer area */
@@ -202,11 +213,11 @@ footer .container .msg .person{
     }
     article .container .movie ul li{
         width: 45%;
-        height: 250px;
+        height: 450px;
     }
     article .container .book ul li{
         width: 45%;
-        height: 250px;
+        height: 450px !important;
     }
     footer{
         height: 170px;
@@ -222,7 +233,7 @@ footer .container .msg .person{
     }
 }
 /* 小屏幕（平板，大于等于 768px） */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .container{
         width:750px;
     }
