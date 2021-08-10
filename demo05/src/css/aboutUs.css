@@ -6,6 +6,10 @@
     font-size: 30px;
     line-height: 50px;
 }
+header .header-box .header-ul .nav-us{
+    font-weight: 700;
+    color: #c9394a;
+}
 .us-box{
     display: flex;
     /* width: 1200px; */

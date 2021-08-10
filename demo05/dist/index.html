@@ -44,9 +44,9 @@
             <span>复仇者联盟</span>
         </div>
         <ul class="header-ul">
-            <li><a href="#">首页</a></li>
-            <li><a href="#;">新闻</a></li>
-            <li><a href="#;">关于我们</a></li>
+            <li><a href="#" class="nav-home">首页</a></li>
+            <li><a href="#;" class="nav-news">新闻</a></li>
+            <li><a href="#;" class="nav-us">关于我们</a></li>
         </ul>
     </div>
 </body>
@@ -55,32 +55,15 @@
         alinkHome = ul.querySelectorAll('a')[0],
         alinkNews = ul.querySelectorAll('a')[1],
         alinkUs = ul.querySelectorAll('a')[2]
+        // console.log(alinks.length);
     alinkHome.addEventListener('click',()=>{
         location.href = 'index.html'
-        alinkHome.style.fontWeight = "700"
-        alinkHome.style.color = "#c9394a"
-        alinkNews.style.fontWeight = "normal"
-        alinkNews.style.color = "#5e5e5e"
-        alinkUs.style.fontWeight = "normal"
-        alinkUs.style.color = "#5e5e5e"
     })
     alinkNews.addEventListener('click',()=>{
         location.href = 'newsPage.html'
-        alinkNews.style.fontWeight = "700"
-        alinkNews.style.color = "#c9394a"
-        alinkHome.style.fontWeight = "normal"
-        alinkHome.style.color = "#5e5e5e"
-        alinkUs.style.fontWeight = "normal"
-        alinkUs.style.color = "#5e5e5e"
     })
     alinkUs.addEventListener('click',()=>{
         location.href = 'aboutUs.html'
-        alinkUs.style.fontWeight = "700"
-        alinkUs.style.color = "#c9394a"
-        alinkHome.style.fontWeight = "normal"
-        alinkHome.style.color = "#5e5e5e"
-        alinkNews.style.fontWeight = "normal"
-        alinkNews.style.color = "#5e5e5e"
     })
 </script>
 </html>

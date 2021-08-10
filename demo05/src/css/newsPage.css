@@ -7,6 +7,10 @@
     line-height: 50px;
     visibility: visible;
 }
+header .header-box .header-ul .nav-news{
+    font-weight: 700;
+    color: #c9394a;
+}
 .news-box{
     width: 85%;
     margin: 0 auto;

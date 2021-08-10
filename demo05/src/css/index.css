@@ -26,7 +26,11 @@ header .box{
     justify-content: space-between;
     align-items: center;
 }
-header .logo{
+header .header-box .header-ul .nav-home{
+    font-weight: 700;
+    color: #c9394a;
+}
+/* header .logo{
     height: 25px;
     display: flex;
 }
@@ -47,7 +51,7 @@ header ul{
 }
 header ul li{
     margin-left: 16px;
-}
+} */
 
 /* context slide */
 .context{

@@ -18,8 +18,7 @@
             font-family: "微软雅黑";
         }
     </style>
-    <script type="text/javascript"src="https://api.map.baidu.com/api?v=2.0&ak=ChPlhaCFpq9GMBgKguhGuIkAFOQX6sQr"></script>
-    <!-- <script src="http://api.map.baidu.com/api?type=webgl&v=1.0&ak=ChPlhaCFpq9GMBgKguhGuIkAFOQX6sQr"></script> -->
+    <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=ChPlhaCFpq9GMBgKguhGuIkAFOQX6sQr"></script>
 </head>
 
 <body>
@@ -41,9 +40,9 @@
             <span>复仇者联盟</span>
         </div>
         <ul class="header-ul">
-            <li><a href="#">首页</a></li>
-            <li><a href="#;">新闻</a></li>
-            <li><a href="#;">关于我们</a></li>
+            <li><a href="#" class="nav-home">首页</a></li>
+            <li><a href="#;" class="nav-news">新闻</a></li>
+            <li><a href="#;" class="nav-us">关于我们</a></li>
         </ul>
     </div>
 </body>
@@ -52,32 +51,15 @@
         alinkHome = ul.querySelectorAll('a')[0],
         alinkNews = ul.querySelectorAll('a')[1],
         alinkUs = ul.querySelectorAll('a')[2]
+        // console.log(alinks.length);
     alinkHome.addEventListener('click',()=>{
         location.href = 'index.html'
-        alinkHome.style.fontWeight = "700"
-        alinkHome.style.color = "#c9394a"
-        alinkNews.style.fontWeight = "normal"
-        alinkNews.style.color = "#5e5e5e"
-        alinkUs.style.fontWeight = "normal"
-        alinkUs.style.color = "#5e5e5e"
     })
     alinkNews.addEventListener('click',()=>{
         location.href = 'newsPage.html'
-        alinkNews.style.fontWeight = "700"
-        alinkNews.style.color = "#c9394a"
-        alinkHome.style.fontWeight = "normal"
-        alinkHome.style.color = "#5e5e5e"
-        alinkUs.style.fontWeight = "normal"
-        alinkUs.style.color = "#5e5e5e"
     })
     alinkUs.addEventListener('click',()=>{
         location.href = 'aboutUs.html'
-        alinkUs.style.fontWeight = "700"
-        alinkUs.style.color = "#c9394a"
-        alinkHome.style.fontWeight = "normal"
-        alinkHome.style.color = "#5e5e5e"
-        alinkNews.style.fontWeight = "normal"
-        alinkNews.style.color = "#5e5e5e"
     })
 </script>
 </html>
@@ -151,81 +133,44 @@
     </footer>
 </body>
 <script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap() {
-        createMap();//创建地图
-        setMapEvent();//设置地图事件
-        addMapControl();//向地图添加控件
-        addMapOverlay();//向地图添加覆盖物
-    }
-    function createMap() {
-        map = new BMap.Map("map");
-        map.centerAndZoom(new BMap.Point(104.070113, 30.540615), 15);
-    }
-    function setMapEvent() {
-        map.enableScrollWheelZoom();
-        map.enableKeyboard();
-        map.enableDragging();
-        map.enableDoubleClickZoom()
-    }
-    function addClickHandler(target, window) {
-        target.addEventListener("click", function () {
-            target.openInfoWindow(window);
-        });
-    }
-    function addMapOverlay() {
-        var markers = [
-            { content: "起点", title: "光明城市", imageOffset: { width: -46, height: -21 }, position: { lat: 30.530786, lng: 104.052004 } },
-            { content: "终点", title: "C12", imageOffset: { width: -46, height: -21 }, position: { lat: 30.546292, lng: 104.07836 } }
-        ];
-        for (var index = 0; index < markers.length; index++) {
-            var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
-            var marker = new BMap.Marker(point, {icon: new BMap.Icon("https://api.map.baidu.com/lbsapi/createmap/images/icon.png", new BMap.Size(20, 25), 
-                            {imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)})
-            });
-            var label = new BMap.Label(markers[index].title, { offset: new BMap.Size(25, 5) });
-            var opts = {
-                width: 200,
-                title: markers[index].title,
-                enableMessage: false
-            };
-            var infoWindow = new BMap.InfoWindow(markers[index].content, opts);
-            marker.setLabel(label);
-            addClickHandler(marker, infoWindow);
-            map.addOverlay(marker);
-        };
-    }
-    //向地图添加控件
-    function addMapControl() {
-        var scaleControl = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
-        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
-        map.addControl(scaleControl);
-        var navControl = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
-        map.addControl(navControl);
-        var overviewControl = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: true });
-        map.addControl(overviewControl);
-    }
-    var map;
-    initMap();
-    // GL版命名空间为BMapGL
-    // 按住鼠标右键，修改倾斜角和角度
-	var map = new BMapGL.Map("allmap");    // 创建Map实例
-	map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var map = new BMapGL.Map('map'); // 创建Map实例
+    map.centerAndZoom(new BMapGL.Point(104.078304, 30.54569), 17); // 初始化地图,设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+
     var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
     map.addControl(scaleCtrl);
     var zoomCtrl = new BMapGL.ZoomControl();  // 添加比例尺控件
     map.addControl(zoomCtrl);
-</script>
-<!-- <script>
-    var map = new BMapGL.Map('container');
-    var point = new BMapGL.Point(116.331, 39.923);
-    map.centerAndZoom(point, 15);
-    map.enableScrollWheelZoom(true);
-    
-    var marker = new BMapGL.Marker(point, {
-        enableDragging: true
+
+    // 创建定位控件
+    var locationControl = new BMapGL.LocationControl({
+        // 控件的停靠位置（可选，默认左上角）
+        anchor: BMAP_ANCHOR_TOP_RIGHT,
+        // 控件基于停靠位置的偏移量（可选）
+        offset: new BMapGL.Size(20, 20)
     });
-    map.addOverlay(marker);
-</script> -->
+    // 将控件添加到地图上
+    map.addControl(locationControl);
+
+    // 添加定位事件
+    locationControl.addEventListener("locationSuccess", function (e) {
+        var address = '';
+        address += e.addressComponent.province;
+        address += e.addressComponent.city;
+        address += e.addressComponent.district;
+        address += e.addressComponent.street;
+        address += e.addressComponent.streetNumber;
+        alert("当前定位地址为：" + address);
+    });
+    locationControl.addEventListener("locationError", function (e) {
+        alert(e.message);
+    });
+
+    // 创建点标记
+    var marker1 = new BMapGL.Marker(new BMapGL.Point(104.075468, 30.542953));
+
+    // 在地图上添加点标记
+    map.addOverlay(marker1);
+</script>
+
 </html>
