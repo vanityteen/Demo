@@ -12,6 +12,9 @@ body{
     height: 100%;
     margin: 0 auto;
 }
+.content{
+    width: 1200px;
+}
 /* header */
 header{
     width: 100%;
@@ -68,7 +71,7 @@ header ul li{
 .service_range .content{
     display: flex;
     justify-content: center;
-    width: 75%;
+    width: 1200px;
     min-width: 600px;
     /* height: 300px; */
     height: auto;
@@ -85,10 +88,14 @@ header ul li{
 }
 .service_range .content ul li{
     width: 200px;
-    /* height: 200px; */
+    height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+.service_range .content ul li img {
+    width: 60%;
 }
 /* intr */
 .intr h2{
@@ -97,6 +104,10 @@ header ul li{
     font-weight: 700;
 }
 .intr .content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px; 
+    margin: 0 auto;
     margin-top: 25px;
 }
 .intr .content .hero-photo,.hero-intr{
@@ -180,7 +191,7 @@ header ul li{
     font-weight: 700;
 }
 .news ul{
-    width: 85%;
+    width: 1200px;
     /* height: 400px;  */
     margin: 0 auto;
     margin-top: 25px;
@@ -260,25 +271,25 @@ footer .msg span{
     padding-top: 15px;
 }
 
-/* 超小屏幕（手机） */
-@media screen and (max-width:768px){
-
-}
-/* 小屏幕（平板，大于等于 768px） */
-@media screen and (min-width: 768px) {
-
-}
-
 /* 中等屏幕（桌面显示器，小于等于 992px） */
 @media screen and (max-width: 992px) {
+    .content{
+        width: 100%;
+    }
     .context .swiper-container{
-        display: none;
+        width: 100%;
+    }
+    .service_range .content{
+        width: 100%;
     }
     .service_range .content ul{
         flex-wrap: wrap;
     }
     .service_range .content ul li{
-        width: 25%;
+        width: 20%;
+    }
+    .service_range .content ul li img{
+        width: 80%;
     }
     .intr .box1,.box3{
         flex-direction: column;
@@ -289,6 +300,7 @@ footer .msg span{
         align-items: center;
     }
     .news ul{
+        width: 100%;
         flex-direction: column;
         align-items: center;
     }

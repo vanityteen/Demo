@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/newsPage.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="./js/lazysizes.min.js"></script>
     <style>
         #pager {
             margin: 50px auto;
@@ -60,8 +61,8 @@
         </div>
         <ul class="header-ul">
             <li><a href="#">首页</a></li>
-            <li><a href="#">新闻</a></li>
-            <li><a href="#">关于我们</a></li>
+            <li><a href="#;">新闻</a></li>
+            <li><a href="#;">关于我们</a></li>
         </ul>
     </div>
 </body>
@@ -72,12 +73,30 @@
         alinkUs = ul.querySelectorAll('a')[2]
     alinkHome.addEventListener('click',()=>{
         location.href = 'index.html'
+        alinkHome.style.fontWeight = "700"
+        alinkHome.style.color = "#c9394a"
+        alinkNews.style.fontWeight = "normal"
+        alinkNews.style.color = "#5e5e5e"
+        alinkUs.style.fontWeight = "normal"
+        alinkUs.style.color = "#5e5e5e"
     })
     alinkNews.addEventListener('click',()=>{
         location.href = 'newsPage.html'
+        alinkNews.style.fontWeight = "700"
+        alinkNews.style.color = "#c9394a"
+        alinkHome.style.fontWeight = "normal"
+        alinkHome.style.color = "#5e5e5e"
+        alinkUs.style.fontWeight = "normal"
+        alinkUs.style.color = "#5e5e5e"
     })
     alinkUs.addEventListener('click',()=>{
         location.href = 'aboutUs.html'
+        alinkUs.style.fontWeight = "700"
+        alinkUs.style.color = "#c9394a"
+        alinkHome.style.fontWeight = "normal"
+        alinkHome.style.color = "#5e5e5e"
+        alinkNews.style.fontWeight = "normal"
+        alinkNews.style.color = "#5e5e5e"
     })
 </script>
 </html>
@@ -91,7 +110,7 @@
                 <li>
                     <div>
                         <i>
-                            <img src="./img/artimg.png">
+                            <img class ="lazyload" data-src="./img/artimg.png">
                         </i>
                         <p>
                             <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
@@ -321,7 +340,7 @@
                     `
                     <div>
                         <i>
-                            <img src="${it.image}">
+                            <img class ="lazyload" data-src="${it.image}">
                         </i>
                         <p>
                             <span class="art-tit"><a href='#'>${it.title}</a></span>

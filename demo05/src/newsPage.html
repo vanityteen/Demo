@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/newsPage.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="./js/lazysizes.min.js"></script>
     <style>
         #pager {
             margin: 50px auto;
@@ -53,7 +54,7 @@
                 <li>
                     <div>
                         <i>
-                            <img src="./img/artimg.png">
+                            <img class ="lazyload" data-src="./img/artimg.png">
                         </i>
                         <p>
                             <span class="art-tit"><a href="detail.html">复仇者联盟1</a></span>
@@ -246,7 +247,7 @@
                     `
                     <div>
                         <i>
-                            <img src="${it.image}">
+                            <img class ="lazyload" data-src="${it.image}">
                         </i>
                         <p>
                             <span class="art-tit"><a href='#'>${it.title}</a></span>

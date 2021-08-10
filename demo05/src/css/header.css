@@ -34,3 +34,13 @@
 .header-ul li{
     margin-left: 16px;
 }
+/* .header-ul li a:visited{
+    font-weight: 700;
+    color: #c9394a;
+} */
+@media screen and (max-width:970px) {
+    .header-box{
+        width: 100%;
+        min-width: 600px;
+    }
+}
