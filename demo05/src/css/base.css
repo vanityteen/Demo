@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
-body, ul, ol, dl, li, dd, h1, h2, h3, h4, h5, h6, p, input { margin: 0 }
 html{height: 100%;}
+body, ul, ol, dl, li, dd, h1, h2, h3, h4, h5, h6, p, input { margin: 0 }
 body{display: flex;flex-direction: column;height: 100%;overflow-x: hidden;}
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; font-family: "Microsoft YaHei"; }
 img { border: none }
@@ -31,8 +31,8 @@ a:active { color: #666; }/*浮动和清除浮动*/
 .boder_ltr_trborder { border: 1px solid #ccc; border-bottom: none; }
 .boder_ltr_trborder tr { border-bottom: 1px solid #ccc; }
 header{
+    margin: 24px 0;
     width: 100%;
-    height: 75px;
     flex: 0 0 auto;
 }
 .context{
@@ -41,9 +41,8 @@ header{
 }
 footer{
     width: 100%;
-    height: 350px;
-    background-color:#ddd;
     flex: 0 0 auto;
+    background-color:#ddd;
 }
 ::-webkit-scrollbar {
     width: 5px;
@@ -60,4 +59,16 @@ background: #2c2c2c;;
 border-radius: 10px;
 -webkit-box-shadow: none;
 background: transparent;
+}
+@media screen and (max-width:768px) {
+    header{
+        padding: 0 1rem;
+        height: auto;
+    }
+    .context{
+        padding: 0 1rem;
+    }
+    footer{
+        height: auto;
+    }
 }

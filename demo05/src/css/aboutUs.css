@@ -12,8 +12,8 @@ header .header-box .header-ul .nav-us{
 }
 .us-box{
     display: flex;
-    /* width: 1200px; */
-    width: 100%;
+    width: 1200px;
+    /* width: 100%; */
     margin: 0 auto;
     justify-content: center;
     column-gap: 36px;
@@ -21,13 +21,13 @@ header .header-box .header-ul .nav-us{
     margin-bottom: 24px;
 }
 .us-box #map{
-    width:550px;
+    width:50%;
     height:400px;
     border:#ccc solid 1px;
     font-size:12px;
 }
 .us-msg{
-    width: 550px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,8 +49,16 @@ header .header-box .header-ul .nav-us{
 
 @media screen and (max-width: 992px) {
     .us-box{
+        width: 100%;
         flex-direction: column;
         align-items: center;
         row-gap: 36px;
+    }
+    .us-box #map{
+        width:100%;
+        height:400px;
+    }
+    .us-msg{
+        width: 100%;
     }
 }

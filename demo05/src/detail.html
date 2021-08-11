@@ -7,6 +7,7 @@
     <title>详情页</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/detail.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -14,21 +15,16 @@
     </header>
     <div class="context">
         <div class="info">
-            <p class="title">
-                复仇者联盟1
+            <p id="articTitle">
             </p>
-            <span class="time">
-                2019-10-10 10:04:17
-            </span>
+            <span id="articTime"></span>
         </div>
         <div class="content">
             <div class="img-post">
-                <img src="./img/artimg.png" alt="">
+                <img src="" id="articImg">
             </div>
-            <div class="intr">
-                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
-                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
-                一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。
+            <div id="articDigest">
+                
             </div>
         </div>
     </div>
@@ -36,4 +32,31 @@
         @@include('./common/footer.html')
     </footer>
 </body>
+<script>
+    var newsId = window.location.href.split('#')[1]
+    console.log(window.location.href.split('#'));
+    console.log(newsId);
+    var newsList = JSON.parse(sessionStorage.getItem("newsData"))
+    console.log(newsList);
+    var newsItem = newsList.filter(item=>{
+        return item.newsId === newsId 
+    })
+    console.log(newsItem);
+    var [ info ] = newsItem
+    console.log(info);
+    var { title , postTime , imgList , digest } = info
+    var [imgSrc] = imgList
+    console.log(title , postTime , imgSrc , digest);
+
+    var articTitle = document.getElementById("articTitle"),
+        articTime = document.getElementById("articTime"),
+        articImg = document.getElementById("articImg"),
+        articDigest = document.getElementById("articDigest")
+    
+    articTitle.innerHTML = title
+    articTime.innerHTML = postTime
+    articDigest.innerHTML = digest
+
+    articImg.setAttribute("src",`${imgSrc}`)
+</script>
 </html>

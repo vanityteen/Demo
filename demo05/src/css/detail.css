@@ -4,20 +4,20 @@
     display: flex;
     flex-direction: column;
 }
-.info .title{
+.info #articTitle{
     color: black;
     font-size: 24px;
     font-weight: 700;
     padding-left: 36px;
     border-left: 3px solid #cd1439;
 }
-.info .time{
+.info #articTime{
     color: #a1a1a1;
     padding-left: 36px;
     margin-top: 12px;
 }
 .content{
-    width: 50%;
+    width: 80%;
     margin: 24px auto;
     display: flex;
     flex-direction: column;
@@ -25,4 +25,10 @@
 }
 .content .img-post img{
     width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .info,.content{
+        width: 100%;
+    }
 }

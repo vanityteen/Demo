@@ -1,12 +1,3 @@
-html{
-    height: 100%;
-}
-body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-x: hidden;
-}
 .box{
     width: 1200px;
     height: 100%;
@@ -16,11 +7,6 @@ body{
     width: 1200px;
 }
 /* header */
-header{
-    width: 100%;
-    height: 75px;
-    flex: 0 0 auto;
-}
 header .box{
     display: flex;
     justify-content: space-between;
@@ -30,29 +16,6 @@ header .header-box .header-ul .nav-home{
     font-weight: 700;
     color: #c9394a;
 }
-/* header .logo{
-    height: 25px;
-    display: flex;
-}
-header .logo i{
-    display: block;
-    width: 25px;
-    height: 25px;
-    background: url(../img/logo.png) no-repeat left;
-    background-size: contain;
-}
-header .logo span{
-    display: block;
-    font-size: 16px;
-    margin-left: 8px;
-}
-header ul{
-    display: flex;
-}
-header ul li{
-    margin-left: 16px;
-} */
-
 /* context slide */
 .context{
     flex: 1 0 auto;
@@ -61,7 +24,16 @@ header ul li{
 .context .swiper-container {
     width: 1500px;
     height: 500px;
-} 
+}
+@media screen and (max-width:768px) {
+    .context .swiper-container {
+        width: 100%;
+        height: 10rem;
+    }
+    .swiper-button-prev , .swiper-button-next{
+        visibility: hidden;
+    }
+}
 /* service_range */
 .service_range,.intr,.news{
     width: 100%;
@@ -76,12 +48,9 @@ header ul li{
     display: flex;
     justify-content: center;
     width: 1200px;
-    min-width: 600px;
-    /* height: 300px; */
-    height: auto;
     background-color: #ddd;
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 .service_range .content ul{
     display: flex;
@@ -101,9 +70,24 @@ header ul li{
 .service_range .content ul li img {
     width: 60%;
 }
+@media screen and (max-width:768px) {
+    .service_range h2{
+        font-size: 18px;
+    }
+    .service_range .content {
+        width: 100%;
+    }
+    .service_range .content ul li{
+        width: 100px;
+        height: 100px;
+    }
+    .service_range .content ul li span{
+        font-size: 0.7rem;
+    }
+}
 /* intr */
 .intr h2{
-    margin-top: 25px;
+    margin-top: 15px;
     font-size: 24px;
     font-weight: 700;
 }
@@ -114,77 +98,98 @@ header ul li{
     margin: 0 auto;
     margin-top: 25px;
 }
-.intr .content .hero-photo,.hero-intr{
-    width: 600px;
+.box1 , .box2 , .box3{
+    width: 100%;
     height: 600px;
+    display: flex;
+    column-gap: 15px;
     overflow: hidden;
 }
-.intr .content .hero-intr .txt{
-    width: 500px;
-    height: 500px;
-    margin: 0 auto ;
-    margin-top: 25px;
+
+.box1 .hero-photo{
+    flex: 1;
+    background: url(../img/ironman.png) center center no-repeat;
+    background-size: cover;
+}
+.box2 .hero-photo{
+    flex: 1;
+    background: url(../img/captain.png) center center no-repeat;
+    background-size: cover;
+}
+.box3 .hero-photo{
+    flex: 1;
+    background: url(../img/natasha.png) center center no-repeat;
+    background-size: cover;
+}
+
+.hero-intr{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.hero-intr h2{
+    margin: 0;
+}
+
+.hero-intr .txt{
+    flex: 1;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.intr .content .hero-intr .txt p{
+
+.hero-intr .txt p{
     position: relative;
 }
-.intr .content .hero-intr .txt p span{
-    font-weight: 700;
-}
-.intr .content .hero-intr .txt i{
+.hero-intr .txt p i{
     position: absolute; 
-    top:-15px; left: 50%; 
+    top:-15px; 
+    left: 50%; 
     width: 150px; 
     border: 1px solid slategray; 
     transform: translate(-50%);
 }
-.intr .box1,.box2,.box3{
-    width: 100%;
-    /* height: 600px; */
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
+.hero-intr .txt p span{
+    font-weight: 700;
 }
-.intr .box1 .hero-photo{
-    background-image: url(../img/ironman.png);
-    background-position-x: -165px;
-    background-position-y: -5px;
-    /* flex: 1; */
+
+@media screen and (max-width:768px) {
+    .intr h2{
+        font-size: 18px;
+    }
+    .intr .content {
+        width: 100%;
+    }
+    .box1 , .box3{
+        width: 100%;
+        height: 700px;
+        flex-direction: column;
+    }
+    .box1 .hero-photo{
+        flex: 0.5;
+    }
+    .box2 .hero-photo{
+        flex: 0.5;
+    }
+    .box3 .hero-photo{
+        flex: 0.5;
+    }
+    .box2{
+        width: 100%;
+        height: 700px;
+        flex-direction: column-reverse;
+    }
+    .hero-intr h2{
+        margin-top: 24px;
+    }
+    .hero-intr .txt{
+        row-gap: 36px;
+    }
 }
-.intr .box1 .hero-intr{
-    /* float: right; */
-    /* flex: 1; */
-}
-/* .intr .box2{
-    width: 1200px;
-    height: 600px;
-    margin: 0 auto;
-} */
-.intr .box2 .hero-photo{
-    background-image: url(../img/captain.png);
-    background-position-x: -294px;
-    background-position-y: -5px;
-}
-/* .intr .box2 .hero-intr{
-    float: left;
-} */
-/* .intr .box3{
-    width: 1200px;
-    height: 600px;
-    margin: 0 auto;
-} */
-.intr .box3 .hero-photo{
-    background-image: url(../img/natasha.png);
-    background-position-x: -294px;
-    background-position-y: -5px;
-}
-/* .intr .box3 .hero-intr{
-    float: right;
-} */
+
 /* news */
 .news{
     width: 100%;
@@ -196,12 +201,18 @@ header ul li{
 }
 .news ul{
     width: 1200px;
-    /* height: 400px;  */
     margin: 0 auto;
     margin-top: 25px;
     display: flex;
     justify-content: center;
     column-gap: 24px;
+}
+@media screen and (max-width:768px) {
+    .news ul {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .news ul li{
     display: flex;
@@ -217,7 +228,7 @@ header ul li{
     color: black;
 }
 .news ul li>span{
-    height: 126px;
+    height: 125px;
     overflow: hidden;
     text-align: left;
     display:-webkit-box; 
@@ -229,7 +240,7 @@ header ul li{
 }
 
 /* footer */
-footer{
+/* footer{
     width: 100%;
     height: 350px;
     background-color:#ddd;
@@ -273,45 +284,4 @@ footer .msg span{
     text-align: center;
     border-top: 1px solid #2c2c2c;
     padding-top: 15px;
-}
-
-/* 中等屏幕（桌面显示器，小于等于 992px） */
-@media screen and (max-width: 992px) {
-    .content{
-        width: 100%;
-    }
-    .context .swiper-container{
-        width: 100%;
-    }
-    .service_range .content{
-        width: 100%;
-    }
-    .service_range .content ul{
-        flex-wrap: wrap;
-    }
-    .service_range .content ul li{
-        width: 20%;
-    }
-    .service_range .content ul li img{
-        width: 80%;
-    }
-    .intr .box1,.box3{
-        flex-direction: column;
-        align-items: center;
-    }
-    .intr .box2{
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-    .news ul{
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-
-}
-
-/* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media screen and (min-width: 1200px) {
-    /* 正常显示 */
-}
+} */

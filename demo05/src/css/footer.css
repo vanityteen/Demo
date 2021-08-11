@@ -3,19 +3,16 @@
     width: 1200px;
     height: 100%;
     margin: 0 auto;
+    background-color:#ddd;
 }
 .foot_nav{
-    float: left;
     width: 100%;
     display: flex;
-    justify-content: center;
-    column-gap: 96px;
-    margin-top: 16px;
+    justify-content: space-evenly;
 }
 .foot_nav li{
-    width: 168px;
-    height: 200px;
-    float: left;
+    width: 25%;
+    /* height: 200px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,10 +23,10 @@
     width: 126px;
     height: 126px;
 }
-.foot_nav .code{
+/* .foot_nav .code{
     width: 214px;
     height: 250px;
-}
+} */
 .foot_nav .code img{
     width: 200px;
     height: 200px;
@@ -42,15 +39,26 @@
 .msg span{
     text-align: center;
     border-top: 1px solid #2c2c2c;
-    padding-top: 15px;
+    padding-top: 7px;
 }
-/* 中等屏幕（桌面显示器，小于等于 992px） */
-@media screen and (max-width: 992px){
+
+@media screen and (max-width: 970px){
     .footer-box{
         width: 100%;
     }
     .foot_nav{
         justify-content: space-evenly;
-        column-gap: 24px;
+        flex-wrap: wrap;
+    }
+    .foot_nav li{
+        width: 50%;
+    }
+    .foot_nav li img{
+        width: 63px;
+        height: 63px;
+    }
+    .foot_nav .code img{
+        width: 63px;
+        height: 63px;
     }
 }

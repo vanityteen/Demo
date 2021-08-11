@@ -56,7 +56,6 @@
 <body>
     <div class="header-box">
         <div class="logo">
-            <i></i>
             <span>复仇者联盟</span>
         </div>
         <ul class="header-ul">
@@ -64,22 +63,53 @@
             <li><a href="#;" class="nav-news">新闻</a></li>
             <li><a href="#;" class="nav-us">关于我们</a></li>
         </ul>
+        <button type="button" id="mob-btn">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
+    <ol class="hidden"style="width:100%">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">新闻</a></li>
+        <li><a href="#">关于我们</a></li>
+    </ol>
 </body>
 <script>
     var ul = document.querySelector('.header-ul'),
-        alinkHome = ul.querySelectorAll('a')[0],
-        alinkNews = ul.querySelectorAll('a')[1],
-        alinkUs = ul.querySelectorAll('a')[2]
-        // console.log(alinks.length);
-    alinkHome.addEventListener('click',()=>{
+        ulLinkHome = ul.querySelectorAll('a')[0],
+        ulLinkNews = ul.querySelectorAll('a')[1],
+        ulLinkUs = ul.querySelectorAll('a')[2]
+    ulLinkHome.addEventListener('click',()=>{
         location.href = 'index.html'
     })
-    alinkNews.addEventListener('click',()=>{
+    ulLinkNews.addEventListener('click',()=>{
         location.href = 'newsPage.html'
     })
-    alinkUs.addEventListener('click',()=>{
+    ulLinkUs.addEventListener('click',()=>{
         location.href = 'aboutUs.html'
+    })
+
+    var btn = document.getElementById('mob-btn'),
+        ol = document.querySelector('ol'),
+        olLinkHome = ol.querySelectorAll('a')[0],
+        olLinkNews = ol.querySelectorAll('a')[1],
+        olLinkUs = ol.querySelectorAll('a')[2]
+        console.log(btn);
+    btn.addEventListener("click",()=>{
+        ol.classList.toggle('hidden')
+    })
+    olLinkHome.addEventListener('click',()=>{
+        location.href = 'index.html'
+        ol.classList.toggle('hidden')
+    })
+    olLinkNews.addEventListener('click',()=>{
+        location.href = 'newsPage.html'
+        ol.classList.toggle('hidden')
+    })
+    olLinkUs.addEventListener('click',()=>{
+        location.href = 'aboutUs.html'
+        ol.classList.toggle('hidden')
     })
 </script>
 </html>
@@ -90,7 +120,7 @@
         </div>
         <div class="news-box">
             <ul id="list">
-                <li>
+                <!-- <li>
                     <div>
                         <i>
                             <img class ="lazyload" data-src="./img/artimg.png">
@@ -101,7 +131,7 @@
                             <span class="art-descr">一股突如其来的强大邪恶势力对地球造成致命威胁，没有任何一个超级英雄能够单独抵挡。长期致力于保护全球安危的神盾局感到措手不及，其指挥官“独眼侠”尼克-法瑞意识到他必须创建一个“史上最强”的联盟组织，云集各方超级英雄一起发威，才能拯救世界于水深火热，抵御黑暗势力的侵袭。</span>
                         </p>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div id="pager"></div>
@@ -152,10 +182,20 @@
     console.log(datalist);
     var str
     axios({
-        url: 'https://api.apiopen.top/getWangYiNews',
-        method: 'POST',
+        // url: 'https://api.apiopen.top/getWangYiNews',
+        // method: 'POST',
+        method: 'GET',
+        url: 'https://www.mxnzp.com/api/news/list',
+        params: {
+            typeId: '515',
+            page: 1,
+            app_id: 'emfjlekgxchngglp',
+            app_secret: 'NStsd016Q0dtdEJMclpUbytualF5Zz09'
+        }
     })
         .then(({ data }) => {
+            var dataStr = JSON.stringify(data.data)
+            sessionStorage.setItem("newsData",dataStr)
             var pager = function () {
                 //公共函数
                 function T$(id) {
@@ -314,21 +354,24 @@
                     }
                 }
             }();
-
-
-            var movieList = data.result
+            var movieList = []
+            var movieList = Object.assign(movieList, data.data)
             // console.log(movieList);
             movieList.map(it => {
                 str =
                     `
                     <div>
                         <i>
-                            <img class ="lazyload" data-src="${it.image}">
+                            <img class ="lazyload" data-src="${it.imgList[0]}">
                         </i>
                         <p>
-                            <span class="art-tit"><a href='#'>${it.title}</a></span>
-                            <span class="art-time">发布日期：${it.passtime.slice(0, 10)}</span>
-                            <span class="art-descr">${it.title}</span>
+                            <span class="art-tit">
+                                <a href="detail.html#${it.newsId}">
+                                    ${it.title}
+                                </a>
+                            </span>
+                            <span class="art-time">发布日期：${it.postTime.slice(0, 10)}</span>
+                            <span class="art-descr">${it.digest}</span>
                         </p>
                     </div>
                     `
@@ -336,7 +379,7 @@
                 tempNode.innerHTML = str;
                 datalist.appendChild(tempNode)
             })
-            pager.onShowPage('list', 'pager', { elemShowCount: 4, pageShowCount: 5 });
+            pager.onShowPage('list', 'pager', { elemShowCount: 8, pageShowCount: 5 });
         })
 </script>
 
