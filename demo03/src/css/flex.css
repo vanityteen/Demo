@@ -275,9 +275,9 @@ footer .container .msg .person{
 }
 
 /* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1170px) {
     .container{
-        width:1170px;
+        width:1200px;
     }
     article .container .movie ul li{
         height: 350px;

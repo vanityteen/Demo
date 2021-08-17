@@ -62,11 +62,7 @@ background: transparent;
 }
 @media screen and (max-width:768px) {
     header{
-        padding: 0 1rem;
         height: auto;
-    }
-    .context{
-        padding: 0 1rem;
     }
     footer{
         height: auto;

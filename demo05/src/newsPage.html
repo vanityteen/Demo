@@ -77,16 +77,16 @@
     var str
     var page = 1
     axios({
-        // url: 'https://api.apiopen.top/getWangYiNews',
-        // method: 'POST',
-        method: 'GET',
-        url: 'https://www.mxnzp.com/api/news/list',
-        params: {
-            typeId: '515',
-            page: page,
-            app_id: 'emfjlekgxchngglp',
-            app_secret: 'NStsd016Q0dtdEJMclpUbytualF5Zz09'
-        }
+        url: 'https://api.apiopen.top/getWangYiNews',
+        method: 'POST',
+        // method: 'GET',
+        // url: 'https://www.mxnzp.com/api/news/list',
+        // params: {
+        //     typeId: '515',
+        //     page: page,
+        //     app_id: 'emfjlekgxchngglp',
+        //     app_secret: 'NStsd016Q0dtdEJMclpUbytualF5Zz09'
+        // }
     })
         .then(({ data }) => {
             var dataStr = JSON.stringify(data.data)

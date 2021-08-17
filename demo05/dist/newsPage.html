@@ -181,17 +181,18 @@
     var datalist = document.getElementById('list')
     console.log(datalist);
     var str
+    var page = 1
     axios({
-        // url: 'https://api.apiopen.top/getWangYiNews',
-        // method: 'POST',
-        method: 'GET',
-        url: 'https://www.mxnzp.com/api/news/list',
-        params: {
-            typeId: '515',
-            page: 1,
-            app_id: 'emfjlekgxchngglp',
-            app_secret: 'NStsd016Q0dtdEJMclpUbytualF5Zz09'
-        }
+        url: 'https://api.apiopen.top/getWangYiNews',
+        method: 'POST',
+        // method: 'GET',
+        // url: 'https://www.mxnzp.com/api/news/list',
+        // params: {
+        //     typeId: '515',
+        //     page: page,
+        //     app_id: 'emfjlekgxchngglp',
+        //     app_secret: 'NStsd016Q0dtdEJMclpUbytualF5Zz09'
+        // }
     })
         .then(({ data }) => {
             var dataStr = JSON.stringify(data.data)
@@ -379,7 +380,7 @@
                 tempNode.innerHTML = str;
                 datalist.appendChild(tempNode)
             })
-            pager.onShowPage('list', 'pager', { elemShowCount: 8, pageShowCount: 5 });
+            pager.onShowPage('list', 'pager', { elemShowCount: 6, pageShowCount: 3 });
         })
 </script>
 
