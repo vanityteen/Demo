@@ -1,0 +1,167 @@
+.player {
+  width: 100%;
+}
+.player p {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+.player .player-ul {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  column-gap: 12px;
+}
+.player .player-ul li {
+  flex: 1;
+  text-align: center;
+}
+.player .player-ul li h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.player .player-ul li form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.player .player-ul li form input:nth-child(1) {
+  outline-color: #1890ff;
+  border: none;
+  border: 1px solid #767676;
+}
+.player .player-ul li.display-P1 {
+  background-color: #dfdfdf;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+  padding: 0 15px;
+}
+.player .player-ul li.display-P1 figure {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  height: 100%;
+  margin: 0;
+  flex: 1;
+}
+.player .player-ul li.display-P1 figure img {
+  width: 50px;
+  height: 50px;
+  margin-left: 16px;
+  border-radius: 10px;
+}
+.player .player-ul li.display-P1 figure figcaption {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1890ff;
+}
+.player .player-ul li.display-P1 .btn-close {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f5222d;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.player .player-ul li.display-P2 {
+  background-color: #dfdfdf;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+  padding: 0 15px;
+}
+.player .player-ul li.display-P2 figure {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  height: 100%;
+  margin: 0;
+  flex: 1;
+}
+.player .player-ul li.display-P2 figure img {
+  width: 55px;
+  height: 55px;
+  margin-left: 16px;
+  border-radius: 10px;
+}
+.player .player-ul li.display-P2 figure figcaption {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1890ff;
+}
+.player .player-ul li.display-P2 .btn-close {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f5222d;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.player .btn-battle {
+  display: block;
+  margin-top: 36px;
+  background-color: #efefef;
+  border: 1px solid black;
+  text-align: center;
+  color: black;
+}
+.player .btn-battle:hover {
+  color: #1890ff;
+  cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+  .player p {
+    font-size: 18px;
+  }
+  .player .player-ul {
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 0.8rem;
+  }
+}
+
+.instruction {
+  width: 100%;
+}
+.instruction p {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+.instruction .instruction-ul {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+.instruction .instruction-ul figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.instruction .instruction-ul figure figcaption {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 0;
+}
+@media screen and (max-width: 992px) {
+  .instruction p {
+    font-size: 18px;
+  }
+  .instruction .instruction-ul figcaption {
+    font-size: 0.6rem !important;
+  }
+}
+
+
+/*# sourceMappingURL=958.142b0ea8.chunk.css.map*/
