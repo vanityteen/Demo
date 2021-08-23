@@ -89,7 +89,7 @@
         // }
     })
         .then(({ data }) => {
-            var dataStr = JSON.stringify(data.data)
+            var dataStr = JSON.stringify(data.result)
             sessionStorage.setItem("newsData",dataStr)
             var pager = function () {
                 //公共函数
@@ -250,23 +250,23 @@
                 }
             }();
             var movieList = []
-            var movieList = Object.assign(movieList, data.data)
+            var movieList = Object.assign(movieList, data.result)
             // console.log(movieList);
             movieList.map(it => {
                 str =
                     `
                     <div>
                         <i>
-                            <img class ="lazyload" data-src="${it.imgList[0]}">
+                            <img class ="lazyload" data-src="${it.image}">
                         </i>
                         <p>
                             <span class="art-tit">
-                                <a href="detail.html#${it.newsId}">
+                                <a href="detail.html">
                                     ${it.title}
                                 </a>
                             </span>
-                            <span class="art-time">发布日期：${it.postTime.slice(0, 10)}</span>
-                            <span class="art-descr">${it.digest}</span>
+                            <span class="art-time">发布日期：${it.passtime.slice(0, 10)}</span>
+                            <span class="art-descr">${it.title}</span>
                         </p>
                     </div>
                     `
