@@ -33,6 +33,9 @@
     </footer>
 </body>
 <script>
+    var newsId = window.location.href.split('#')[1]
+    console.log(window.location.href.split('#'));
+    console.log(newsId);
     var newsList = JSON.parse(sessionStorage.getItem("newsData"))
     console.log(newsList);
     var newsItem = newsList.filter(item=>{
