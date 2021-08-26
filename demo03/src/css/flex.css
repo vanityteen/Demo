@@ -1,0 +1,285 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+/* #560312 */
+/* header area */
+header{
+    width: 100%;
+    /* height: 50px; */
+    background-color: #ff4c4f;
+    flex: 0 0 auto;
+}
+header .container{
+    height: 100%;
+    margin: 0 auto;
+}
+header .container button{
+    visibility: hidden;
+    float: right;
+    width: 36px;
+    height: 28px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+}
+header .container button .icon-bar{
+    background-color: #888;
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+header .container .hidden{
+    display: none;
+}
+header .container .logo{
+    float: left;
+    line-height: 50px;
+}
+header .container .logo i{
+    display: block;
+    float: left;
+    width: 24px;
+    height: 24px;
+    background-image: url('../img/logo.png');
+    background-size: contain;
+    margin-top: 12px;
+}
+header .container .logo span{
+    display: block;
+    float: left;
+    margin-left: 15px;
+    color: #fee0e6;
+}
+header .container ul{
+    float: right;
+    line-height: 50px;
+}
+header .container ul li{
+    float: left;
+    margin-left: 15px;
+}
+header .container ul li a{
+    color: #fee0e6;
+}
+
+/* article area */
+article{
+    width: 100%;
+    flex: 1 0 auto;
+    margin-bottom: 30px;
+}
+article .container{
+    height: 100%;
+    margin: 0 auto;
+}
+article .container .title{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+article .container .title span{
+    display: block;
+    width: 70px;
+    margin:0 auto;
+    line-height: 50px;
+    border-bottom: 3px solid black;
+}
+article .container ul{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+/* 喜欢的电影 */
+article .container .movie ul li{
+    display: flex;
+    width: 240px;
+    height: 350px;
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #fad7d9;
+    background-color: #fef0ef;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+article .container .movie ul li p{
+    width: 100%;
+    height: 100%;
+}
+/* 喜欢的书 */
+article .container .book ul li{
+    display: flex;
+    width: 20%;
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #fad7d9;
+    background-color: #fef0ef;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+article .container .book ul li:nth-child(1){
+    height: 350px;
+}
+article .container .book ul li:nth-child(2){
+    height: 370px;
+}
+article .container .book ul li:nth-child(3){
+    height: 330px;
+}
+article .container .book ul li:nth-child(4){
+    height: 300px;
+}
+article .container .book ul li img{
+    flex: 1;
+    overflow: hidden;
+}
+
+/* footer area */
+footer{
+    width: 100%;
+    height: 320px;
+    background-color: #810014;
+    flex: 0 0 auto;
+}
+footer .container{
+    height: 100%;
+    margin: 0 auto;
+}
+/* footer .container .msg{
+    padding-top: 30px;
+    height: 100%;
+    margin: 0 auto;
+}
+footer .container .msg .txt,.person{
+    float: left;
+    color: #fee0e6;
+}
+footer .container .msg .txt{
+    font-size: larger;
+    width: 60%;
+}
+footer .container .msg .code{
+    float: left;
+    margin-left: 36px;
+    margin-bottom: 8px;
+    width: 20%;
+}
+footer .container .msg .code img{
+    width: 100%;
+    height: 100%;
+}
+footer .container .msg .person{
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #710111;
+    text-align: center;
+    line-height: 45px;
+} */
+footer .container .msg{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10%;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+}
+footer .container .msg .code{
+    display: flex;
+    column-gap: 15%;
+}
+footer .container .msg .code img{
+    width: 17%;
+}
+footer .container .msg .code span{
+    font-size: larger;
+    width: 60%;
+    color: #fee0e6;
+}
+footer .container .msg .person{
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #710111;
+    text-align: center;
+    line-height: 50px;
+}
+
+
+
+
+/* 超小屏幕（手机） */
+@media screen and (max-width:768px){
+    .container{
+        width:100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    header .container ul{
+        display: none;
+    }
+    article .container ul{
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+    article .container .movie ul li{
+        width: 45%;
+        height: 450px;
+    }
+    article .container .book ul li{
+        width: 45%;
+        height: 450px !important;
+    }
+    footer{
+        height: 16rem;
+    }
+    footer .container .msg .person{
+        padding-top: 0;
+    }
+    footer .container .msg .txt{
+        font-size: small;
+    }
+    header .container button{
+        visibility:visible;
+    }
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media screen and (max-width: 768px) {
+    .container{
+        width:750px;
+    }
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media screen and (min-width: 992px) {
+    .container{
+        width:970px;
+    }
+    
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (min-width: 1170px) {
+    .container{
+        width:1200px;
+    }
+    article .container .movie ul li{
+        height: 350px;
+    }
+}

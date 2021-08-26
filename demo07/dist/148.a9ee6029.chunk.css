@@ -1,0 +1,82 @@
+.result {
+  margin-top: 48px;
+}
+.result figure {
+  width: 100%;
+  background-color: #ebebeb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result figure h3 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+}
+.result figure img {
+  width: 177px;
+  height: 177px;
+  background-color: cadetblue;
+}
+.result figure figcaption {
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 ;
+}
+.result figure figcaption.scores {
+  font-weight: 700;
+  font-size: 20px;
+}
+.result figure figcaption.itemName {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #1890ff;
+}
+.result figure > figcaption:nth-of-type(3) .icon-ul li {
+  text-align: center;
+}
+.result figure > figcaption:nth-of-type(3) .msg-ul {
+  padding-left: 12px;
+}
+.result .reset-btn {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 992px) {
+  .result {
+    margin-top: 12px;
+  }
+  .result figure h3 {
+    font-size: 16px;
+  }
+  .result figure img {
+    width: 80%;
+    height: 125px;
+  }
+  .result figure figcaption {
+    font-size: 12px;
+    margin: 0 ;
+  }
+  .result figure figcaption.scores {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .result figure figcaption.itemName {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1890ff;
+  }
+  .result figure > figcaption:nth-of-type(3) .icon-ul li {
+    text-align: center;
+  }
+  .result figure > figcaption:nth-of-type(3) .msg-ul {
+    padding-left: 12px;
+  }
+}
+
+
+/*# sourceMappingURL=148.a9ee6029.chunk.css.map*/
