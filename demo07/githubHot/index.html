@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/antd/4.16.9/antd.min.css" rel="stylesheet">
     <title>热门项目</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
@@ -13,6 +14,7 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/antd/4.16.9/antd.js"></script>
 </head>
 <style>
     * {
@@ -21,10 +23,12 @@
         list-style: none;
         box-sizing: border-box;
     }
-    a{
+
+    a {
         text-decoration: none;
         color: #000;
     }
+
     /* app */
     .app {
         width: 100%;
@@ -38,59 +42,71 @@
         column-gap: 8px;
     }
 
-    .app .app-ul a {
+    .app .app-ul button {
         font-size: 14px;
         font-weight: 700;
+        border: none;
+        background-color: transparent;
     }
 
-    .app .app-ul a:hover {
+    .app .app-ul button:hover {
         color: #c42a16;
+        cursor: pointer;
     }
 
     .app .app-ul .active {
         color: #c42a16;
     }
+
     /* ReposList */
-    .repos{
+    .repos {
         width: 100%;
         margin-top: 15px;
     }
-    .repos .repos-ul{
+
+    .repos .repos-ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         gap: 8px;
     }
-    .repos .repos-ul li{
+
+    .repos .repos-ul li {
         width: 20%;
     }
 
     /* Card */
-    .card{
+    .card {
         background-color: #ebebeb;
     }
-    .card .card-ul figure{
+
+    .card .card-ul figure {
         display: flex;
         flex-direction: column;
-        align-items: center;           
+        align-items: center;
     }
-    .card .card-ul li{
+
+    .card .card-ul li {
         width: 100%;
     }
-    .card .card-ul figure h3{
+
+    .card .card-ul figure h3 {
         padding: 15px 0;
     }
-    .card .card-ul figure img{
+
+    .card .card-ul figure img {
         width: 50%;
         object-fit: cover
     }
-    .card .card-ul figure figcaption:nth-of-type(1){
+
+    .card .card-ul figure figcaption:nth-of-type(1) {
         padding: 15px 0;
         font-size: 18px;
         font-weight: 700;
         color: #c42a16;
     }
-    .card .card-ul figure figcaption:nth-of-type(2){
+
+    .card .card-ul figure figcaption:nth-of-type(2) {
         padding-bottom: 15px;
 
     }
@@ -100,52 +116,193 @@
     <div id="container"></div>
 </body>
 <script type="text/babel">
+    /*-----App 组件-----*/
     class App extends React.Component {
+        state = {
+            type: '',
+            nextData: [],
+            isLoadingMore: false,
+            loadings: [],
+        }
+        async componentDidMount() {
+            const initpage = 1
+            var ul = document.getElementsByClassName('app-ul')[0],
+                btns = ul.getElementsByTagName('button'),
+                newArr = Array.from(btns)
+            //刷新保持以及数据持久化
+            for(var i = 0 ; i < newArr.length ; i++){
+                if(!sessionStorage.getItem('keep')){
+                    newArr[0].classList.add('active')
+                }
+                if(newArr[i].innerHTML.toLocaleLowerCase() === sessionStorage.getItem('keep')){
+                    newArr[i].classList.add('active')
+                }
+            }
+            await this.Ajax(!!sessionStorage.getItem('keep')?sessionStorage.getItem('keep'):'all', initpage)
+            //判断页面是否滚动到底部 出现加载更多按钮
+            window.addEventListener('scroll', () => {
+                if (document.documentElement.clientHeight + document.documentElement.scrollTop < document.body.scrollHeight) {
+                    setTimeout(() => {
+                        this.setState({
+                            isLoadingMore: false
+                        })
+                    }, 0);
+                    return
+                } else {
+                    this.setState({
+                        isLoadingMore: true
+                    })
+                }
+            })
+        }
+        //改变章节
+        async changeType(type, event) {
+            window.location.hash = `charpter=${type}?page=1`
+            sessionStorage.setItem('keep',type)
+            var ul = document.getElementsByClassName('app-ul')[0],
+                btns = ul.getElementsByTagName('button'),
+                newArr = Array.from(btns)
+            newArr.forEach((item) => {
+                item.classList.remove('active')
+                item.removeAttribute('disabled')
+                if (item === event.target) {
+                    item.classList.toggle('active')
+                    item.setAttribute('disabled', true)
+                }
+            })
+            //判断页面请求是否改变
+            window.addEventListener('hashchange', (it) => {
+                if (it.newURL.split('#')[1].slice(9, -7) !== it.oldURL.split('#')[1].slice(9, -7)) {
+                    this.setState({
+                        nextData: []
+                    })
+                }
+            })
+            await this.Ajax(type, 1)
+        }
+        //将参数添加到url中
+        mapToHash(charpter, page) {
+            window.location.hash = `charpter=${charpter}?page=${page}`
+        }
+        //发送请求获取初始数据
+        Ajax(type, page) {
+            axios({
+                url: `https://api.github.com/search/repositories?q=stars:%3E1${!!type ? '+language:' + type : ''}&sort=stars&order=desc&type=Repositories&page=${page}`,
+                method: 'GET'
+            }).then((data) => {
+                this.mapToHash(!!type ? type : 'all', page)
+                this.setState({
+                    nextData: [...this.state.nextData, ...data.data.items],
+                    type:type
+                })
+            })
+            .catch(err => {//获取和展示接口错误信息
+                if (err.response) {
+                    console.log(err.response.data.message);
+                }
+            })
+        }
+        //从url上获取当前所在页
+        getPageFromHash = () => {
+            let curPage = window.location.hash.slice(-1)
+            return curPage
+        }
+        //从url上获取当前所在章节
+        getCptFromHash = () => {
+            let curCpt = window.location.hash.slice(10, -7)
+            return curCpt
+        }
+        //加载更多事件
+        async enterLoading(index) {
+            let curPage = this.getPageFromHash()
+            let curCpt = this.getCptFromHash()
+            let nextPage = ++curPage
+            this.setState(({ loadings }) => {
+                const newLoadings = [...loadings];
+                newLoadings[index] = true;
+                return {
+                    loadings: newLoadings,
+                };
+            });
+            await this.Ajax(curCpt, nextPage)
+            setTimeout(() => {
+                this.setState(({ loadings }) => {
+                    const newLoadings = [...loadings];
+                    newLoadings[index] = false;
+                    return {
+                        loadings: newLoadings,
+                    };
+                });
+            }, 2000);
+        };
         render() {
+            const btnStyle = { position: 'absolute', left: '50%', transform: 'translateX(-50%)' }
+            const { Button } = antd
+            const { loadings } = this.state
             return (
                 <div className='app'>
                     <ul className='app-ul'>
-                        <li><a href="#" className="active">All</a></li>
-                        <li><a href="#">JavaScript</a></li>
-                        <li><a href="#">Ruby</a></li>
-                        <li><a href="#">Java</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">Python</a></li>
+                        <li><button onClick={this.changeType.bind(this, 'all')}>All</button></li>
+                        <li><button onClick={this.changeType.bind(this, 'javascript')}>JavaScript</button></li>
+                        <li><button onClick={this.changeType.bind(this, 'ruby')}>Ruby</button></li>
+                        <li><button onClick={this.changeType.bind(this, 'java')}>Java</button></li>
+                        <li><button onClick={this.changeType.bind(this, 'css')}>CSS</button></li>
+                        <li><button onClick={this.changeType.bind(this, 'python')}>Python</button></li>
                     </ul>
-                    <ReposList />
+                    <ReposList type={this.state.type} nextData={this.state.nextData} />
+                    {
+                        this.state.isLoadingMore
+                            ?
+                            <Button type="primary" loading={loadings[0]} onClick={() => this.enterLoading(0)} style={btnStyle} >
+                                点击！加载更多
+                            </Button>
+                            :
+                            ''
+                    }
                 </div>
             )
         }
     }
+    /*-----ReposList 组件-----*/
     class ReposList extends React.Component {
         constructor(props) {
             super(props)
             this.state = {
-                repos: []
+                repos: [],
+                preType:''
             }
         }
-        async componentDidMount() {
-            const res = await axios({
-                url: 'https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories',
-                method: 'GET'
-            })
-                .catch((err) => {
-                    alert(err.message);
-                })
-            this.setState({
-                repos: res.data.items
-            })
+
+        // 获取父组件的props map To state
+        static getDerivedStateFromProps(nextProps, prevState) {
+            const  { type } = nextProps 
+            const nextData = nextProps.nextData
+            if (type !== prevState.preType) {
+                return {
+                    type,
+                    repos:nextData,
+                }
+            }
+            return null
         }
+
+        shouldComponentUpdate(nextProps, prevState) {
+            if (nextProps.nextData === prevState.repos) {
+                return true
+            }
+            return false
+        }
+
         render() {
             const List = this.state.repos
             return (
                 <div className='repos'>
                     <ul className='repos-ul'>
                         {
-                            List.map((it,index)=>{
+                            List.map((it, index) => {
                                 return (
                                     <li key={index}>
-                                        <Card  order={index+1} it={it}/>
+                                        <Card order={index + 1} it={it} />
                                     </li>
                                 )
                             })
@@ -196,6 +353,8 @@
         <App />,//JSX语法，要显示的UI组件
         document.getElementById('container')//指明插入位置
     )
+</script>
+<script>
 </script>
 
 </html>
