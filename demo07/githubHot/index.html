@@ -57,6 +57,9 @@
     .app .app-ul .active {
         color: #c42a16;
     }
+    .app .app-ul .active:hover {
+        cursor: not-allowed;
+    }
 
     /* ReposList */
     .repos {
@@ -155,6 +158,13 @@
                 }
             })
         }
+        showErr(errMsg){
+            const {notification} = antd
+            notification['warning']({
+                message: 'Warring Massage',
+                description:errMsg,
+            });
+        }
         //改变章节
         async changeType(type, event) {
             window.location.hash = `charpter=${type}?page=1`
@@ -199,6 +209,7 @@
             .catch(err => {//获取和展示接口错误信息
                 if (err.response) {
                     console.log(err.response.data.message);
+                    this.showErr(err.response.data.message)
                 }
             })
         }
