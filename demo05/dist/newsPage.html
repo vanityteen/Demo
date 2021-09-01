@@ -188,10 +188,10 @@
         url: 'https://www.mxnzp.com/api/news/list',
         method: 'GET',
         params: {
-            typeId: '515',
+            typeId: '509',
             page: 1,
-            app_id: 'kwwgqwsrlykifgnk',
-            app_secret: 'V0FYcFN5RG5qVkwyeVRZMDVUSEcwQT09'
+            app_id: 'mwpiiyeiumknawku',
+            app_secret: 'b2VSeGRXUVVsTlU1cW15YmRvYUxuUT09'
         }
     })
         .then(({ data }) => {
@@ -355,19 +355,18 @@
                     }
                 }
             }();
-            var movieList = []
-            var movieList = Object.assign(movieList, data.data)
-            // console.log(movieList);
+            // var movieList = Object.assign(movieList, data.data)
+            var movieList = JSON.parse(sessionStorage.getItem('newsData'))
             movieList.map(it => {
                 str =
                     `
-                    <div>
-                        <i>
+                    <div class='item'>
+                        <div class='art-img-container'>
                             <img class ="lazyload" data-src="${it.imgList[0]}">
-                        </i>
+                        </div>
                         <p>
                             <span class="art-tit">
-                                <a href="detail.html#${it.newsId}">
+                                <a href="detail.html?newsId=${it.newsId}">
                                     ${it.title}
                                 </a>
                             </span>
@@ -380,7 +379,7 @@
                 tempNode.innerHTML = str;
                 datalist.appendChild(tempNode)
             })
-            pager.onShowPage('list', 'pager', { elemShowCount: 6, pageShowCount: 3 });
+            pager.onShowPage('list', 'pager', { elemShowCount: 10, pageShowCount: 3 });
         })
 </script>
 

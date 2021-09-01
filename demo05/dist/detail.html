@@ -139,30 +139,39 @@
     </footer>
 </body>
 <script>
-    var newsId = window.location.href.split('#')[1]
-    console.log(window.location.href.split('#'));
-    console.log(newsId);
-    var newsList = JSON.parse(sessionStorage.getItem("newsData"))
-    console.log(newsList);
-    var newsItem = newsList.filter(item=>{
-        return item.newsId === newsId 
-    })
-    console.log(newsItem);
-    var [ info ] = newsItem
-    console.log(info);
-    var { title , postTime , imgList , digest } = info
-    var [imgSrc] = imgList
-    console.log(title , postTime , imgSrc , digest);
-
     var articTitle = document.getElementById("articTitle"),
-        articTime = document.getElementById("articTime"),
-        articImg = document.getElementById("articImg"),
-        articDigest = document.getElementById("articDigest")
+            articTime = document.getElementById("articTime"),
+            articImg = document.getElementById("articImg")
+            articDigest = document.getElementById("articDigest")
+    var hashNewsId = window.location.href.split('?')[1]
+    var newsId = hashNewsId.slice(7)
+    console.log(newsId);
+    var newsList = axios({
+        url: 'https://www.mxnzp.com/api/news/details',
+        method: 'GET',
+        params: {
+            newsId:newsId,
+            app_id: 'mwpiiyeiumknawku',
+            app_secret: 'b2VSeGRXUVVsTlU1cW15YmRvYUxuUT09'
+        }
+    }).then(({data})=>{
+        console.log(data.data);
+        if(data.data.docid === newsId){
+            var newsItem = data.data
+            var { content } = newsItem
+            console.log(content);
+            var { title , ptime , images  } = newsItem
+            var imgSrc = images[0].imgSrc
+            console.log(title , ptime , imgSrc );
+            articTitle.innerHTML = title
+            articTime.innerHTML = ptime
+            articDigest.innerHTML = content
+            articImg.setAttribute("src",`${imgSrc}`)
+        }
     
-    articTitle.innerHTML = title
-    articTime.innerHTML = postTime
-    articDigest.innerHTML = digest
-
-    articImg.setAttribute("src",`${imgSrc}`)
+        
+        
+    
+    })
 </script>
 </html>
